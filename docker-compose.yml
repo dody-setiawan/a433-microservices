@@ -5,9 +5,12 @@ version: "3.7"
 services:
 
   item-app:
-
+    
+    # nama container
+    container_name: item-app
+    
     # base image yang digunakan
-    image: node:14
+    image: dodysetiawan/item-app:v1
 
     command: sh -c "yarn install && yarn run dev"
 
@@ -18,17 +21,18 @@ services:
 
     # letak dari working directory
     working_dir: /app
+    
+    # agar item-db dapat diluncurkan dulu
+    depends_on: 
 
-    # environment database mongo db untuk item-app
+      - item-db
+
+    # environment database mongo di item-app
     environment:
+    
+      MONGO_HOST: mongo
 
-      MONGO_HOST: item-db
-
-      MONGO_USER: root
-
-      MONGO_PASSWORD: dody
-
-      MONGO_DB: item-db
+      MONGO_PORT: 27017
     
     # restart policy untuk item-app
     deploy:
@@ -43,8 +47,15 @@ services:
 
         window: 120s
 
+    # networks untuk menghubungkan dengan item-db
+    networks:
+
+      - item-app-network
 
   item-db:
+  
+    # nama container
+    container_name: item-db
 
     # base image yang digunakan
     image: mongo:3
@@ -54,14 +65,25 @@ services:
 
       - app-db:/data/db
 
-    # environment di database mongo db
+    # environment di database mongo
     environment:
 
-      MONGO_ROOT_PASSWORD: dody
+      MONGO_INITDB_ROOT_USERNAME: dody
 
-      MONGO_DATABASE: item-db
+      MONGO_INITDB_ROOT_PASSWORD: dody
+
+    # networks untuk menghubungkan dengan item-app
+    networks:
+
+      - item-app-network
 
 
 volumes:
 
   app-db:
+  
+networks:
+
+  item-app-network:
+
+    name: item-app-network
