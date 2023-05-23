@@ -1,5 +1,5 @@
 # untuk membuat Docker image dari Dockerfile dengan nama image item-app dan tag v1
-docker run -d --name=item-app -p 80:8080 item-app:v1
+docker build -t item-app:v1 .
 
 # untuk menampilkan daftar image
 docker images
