@@ -7,7 +7,7 @@ WORKDIR /app
 # menyalin semua file yang ada di source code ke working directory
 COPY . .
 
-# konfigurasi agar environment adalah production mode dan database host bernama item-db 
+# konfigurasi agar aplikasi berjalan di production mode dan database host bernama item-db 
 ENV NODE_ENV=production DB_HOST=item-db
 
 # perintah agar menginstal dependencies untuk production dan kemudian build aplikasi
