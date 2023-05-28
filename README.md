@@ -1,2 +1,2 @@
 # a433-microservices
-Repository ini digunakan untuk kebutuhan kelas Belajar Membangun Arsitektur Microservices
+Branch ini digunakan untuk kebutuhan Proyek Deploy Aplikasi Karsa Jobs dengan Kubernetes 
