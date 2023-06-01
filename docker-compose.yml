@@ -2,7 +2,7 @@ version: "3.2"
 services:
   rabbitmq:
     image: rabbitmq:3.11-management
-    container_name: 'rabbitmq_container'
+    container_name: 'rabbitmq'
     ports:
         - 5672:5672
         - 15672:15672
@@ -10,7 +10,7 @@ services:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
-        - rabbitmq_network
+        - rabbitmq_network2
   shipping-service:
     image: dodysetiawan/shipping-service
     container_name: 'shipping-service'
@@ -22,7 +22,7 @@ services:
       NODE_ENV: production
       AMQP_URL: amqp://localhost:5672
     networks:
-      - rabbitmq_network
+      - rabbitmq_network2
 networks:
-  rabbitmq_network:
+  rabbitmq_network2:
     driver: bridge
