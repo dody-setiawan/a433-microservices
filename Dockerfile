@@ -5,4 +5,4 @@ ENV NODE_ENV=production
 RUN npm ci
 COPY ./*.js ./
 COPY ./.env ./
-CMD ["npm", "run start"]
+CMD ["npm", "start"]
