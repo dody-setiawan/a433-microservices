@@ -7,11 +7,11 @@ ENV NODE_ENV=production
 RUN npm ci
 COPY ./*.js ./
 COPY ./.env ./
-CMD ["npm", "start"]
+CMD ["npm", "run start"]
  
 FROM base as dev
 ENV NODE_ENV=development
 RUN npm install
 COPY ./*.js ./
 COPY ./.env ./
-CMD ["npm", "dev"]
+CMD ["npm", "run dev"]
