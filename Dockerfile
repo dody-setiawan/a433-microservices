@@ -1,17 +1,8 @@
-FROM node:18-alpine as base
+FROM node:18-alpine
 WORKDIR /src
 COPY package*.json ./
- 
-FROM base as production
 ENV NODE_ENV=production
 RUN npm ci
 COPY ./*.js ./
 COPY ./.env ./
 CMD ["npm", "run start"]
- 
-FROM base as dev
-ENV NODE_ENV=development
-RUN npm install
-COPY ./*.js ./
-COPY ./.env ./
-CMD ["npm", "run dev"]
